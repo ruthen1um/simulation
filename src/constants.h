@@ -1,5 +1,0 @@
-#define MAX_SQUARES 100
-#define SQUARE_MIN_SIZE 15.0f
-#define SQUARE_MAX_SIZE 50.0f
-#define SQUARE_MIN_SPEED 1.0f 
-#define SQUARE_MAX_SPEED 3.0f 

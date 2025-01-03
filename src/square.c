@@ -1,5 +1,4 @@
 #include <SDL3/SDL.h>
-#include "constants.h"
 #include "square.h"
 #include "state.h"
 #include "misc.h"
@@ -16,20 +15,25 @@ Square* create_square(float x, float y, float size, float speed, SDL_Color color
 }
 
 Square* get_random_square(const State* state) {
-    auto size = get_random_float(SQUARE_MIN_SIZE, SQUARE_MAX_SIZE);
+    auto size = get_random_float(
+        state->square_min_size,
+        state->square_max_size
+    );
 
     return create_square(
         get_random_float(0, (float) state->width - size),
         get_random_float(0, (float) state->height - size),
         size,
-        get_random_float(SQUARE_MIN_SPEED, SQUARE_MAX_SPEED),
+        get_random_float(
+            state->square_min_speed,
+            state->square_max_speed),
         get_random_color()
     );
 }
 
 Square** get_random_squares(const State* state) {
-    auto squares = (Square**)SDL_malloc((sizeof(Square*)) * MAX_SQUARES);
-    for (size_t i = 0; i < MAX_SQUARES; ++i) {
+    auto squares = (Square**)SDL_malloc((sizeof(Square*)) * state->max_squares);
+    for (size_t i = 0; i < state->max_squares; ++i) {
         squares[i] = get_random_square(state);
     }
     return squares;
@@ -39,8 +43,8 @@ void destroy_square(Square* square) {
     SDL_free(square);
 }
 
-void destroy_squares(Square** squares) {
-    for (size_t i = 0; i < MAX_SQUARES; ++i) {
+void destroy_squares(const State* state, Square** squares) {
+    for (size_t i = 0; i < state->max_squares; ++i) {
         destroy_square(squares[i]);
     }
 }
@@ -52,7 +56,7 @@ void render_square(const State* state, const Square* square) {
 }
 
 void render_squares(const State* state, const Square** squares) {
-    for (size_t i = 0; i < MAX_SQUARES; ++i) {
+    for (size_t i = 0; i < state->max_squares; ++i) {
         render_square(state, squares[i]);
     }
 }

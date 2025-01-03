@@ -17,7 +17,7 @@ Square* get_random_square(const State* state);
 Square** get_random_squares(const State* state);
 
 void destroy_square(Square* square);
-void destroy_squares(Square** squares);
+void destroy_squares(const State* state, Square** squares);
 
 void render_square(const State* state, const Square* square);
 void render_squares(const State* state, const Square** squares);
