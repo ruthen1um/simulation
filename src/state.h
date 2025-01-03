@@ -8,6 +8,7 @@ typedef struct {
     SDL_Renderer* renderer;
     int width;
     int height;
+    bool settings_opened;
 } State;
 
 #endif // STATE_H
