@@ -8,6 +8,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 add_executable(${CMAKE_PROJECT_NAME}
     src/main.c
+    src/square.c
+    src/misc.c
 )
 
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE
